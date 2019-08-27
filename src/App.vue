@@ -1,7 +1,7 @@
 <template>
 <div id="app">
   <v-app>
-    <v-navigation-drawer color="#345A61" v-model="drawer" app clipped dark>
+    <v-navigation-drawer color="rgb(41, 163, 163)" v-model="drawer" app clipped dark>
       <v-list dense>
         <v-list-item>
           <v-list-item-action>
@@ -22,7 +22,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-left :collapse='!drawer' color='rgb(72, 97, 102)' dark>
+    <v-app-bar app clipped-left :collapse='!drawer' color='rgb(51, 204, 204)' dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-img ></v-img>
       <div class="flex-grow-1"></div>
@@ -56,7 +56,6 @@ export default {
 </script>
 <style>
 .v-application--wrap{
-  background-color:#CEF7F5;
 }
 .background{
     background-color:#CEF7F5;
