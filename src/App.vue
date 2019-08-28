@@ -56,6 +56,7 @@ export default {
 </script>
 <style>
 .v-application--wrap{
+  /* background-image: url('./assets/beach.jpg') */
 }
 .background{
     background-color:#CEF7F5;
