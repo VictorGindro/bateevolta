@@ -17,9 +17,7 @@
             <v-img aspect-ratio="2.00" src="https://wallpaperbro.com/img/212940.jpg">
                 <v-list-item>
                     <v-list-item-avatar>
-                        <v-btn class="mx-2" fab small color="white">
-                            <v-icon color="rgb(70, 180, 199)">directions_bus</v-icon>
-                        </v-btn>
+                        <Popup v-bind="'aaa'"/>
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title class="fill-height" align="center" justify="center">Santos
@@ -35,7 +33,11 @@
 </template>
 
 <script>
+import Popup from './Popup'
   export default {
+        components: {
+    Popup
+  },
     data () {
       return {
         slides: [
