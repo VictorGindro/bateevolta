@@ -1,7 +1,7 @@
  <template>
      <v-card elevation="24" max-width="225" color="rgb(195,222,233)">
          <v-system-bar color="rgb(247,245,215)" lights-on height="50" class="justify-center">
-             <v-btn icon="supervisor_account" color="white">
+             <v-btn icon color="white">
                  <v-icon color="rgb(70, 180, 199)">supervisor_account</v-icon>
              </v-btn>
              <!-- <v-spacer/> -->
@@ -16,7 +16,7 @@
              <v-img aspect-ratio="2.00" src="https://wallpaperbro.com/img/212940.jpg">
                  <v-list-item>
                      <v-list-item-avatar>
-                         <Popup v-bind="'aaa'" />
+                         <Popup />
                      </v-list-item-avatar>
                      <v-list-item-content>
                          <v-list-item-title class="fill-height" align="center" justify="center">Santos
