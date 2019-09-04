@@ -10,20 +10,17 @@
       </v-btn>
     </v-app-bar>
     <v-content>
-      <router-view name="header">
-        <Header />
-      </router-view>
       <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Header from './components/Header'
+//import Header from './components/Header'
 export default {
   name: 'App',
   components: {
-    Header
+   // Header
   },
   data: () => ({
     drawer: true,

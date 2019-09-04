@@ -13,8 +13,8 @@ const List = resolve => {
     });
 };
 const Create = resolve => {
-    require.ensure(['../pages/organizador/Criar.vue'], () => {
-        resolve(require('../pages/organizador/Criar.vue'));
+    require.ensure(['../pages/Criar.vue'], () => {
+        resolve(require('../pages/Criar.vue'));
     });
 };
 export const routes = [{
