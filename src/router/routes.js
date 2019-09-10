@@ -3,18 +3,18 @@ import Popup from '../components/Popup.vue';
 import Header from '../components/Header.vue';
 // Lazy loading
 const Login = resolve => {
-    require.ensure(['../pages/Login.vue'], () => {
-        resolve(require('../pages/Login.vue'));
+    require.ensure(['../usuario/Login.vue'], () => {
+        resolve(require('../usuario/Login.vue'));
     });
 };
 const List = resolve => {
-    require.ensure(['../pages/List.vue'], () => {
-        resolve(require('../pages/List.vue'));
+    require.ensure(['../usuario/List.vue'], () => {
+        resolve(require('../usuario/List.vue'));
     });
 };
 const Create = resolve => {
-    require.ensure(['../pages/organizador/Criar.vue'], () => {
-        resolve(require('../pages/organizador/Criar.vue'));
+    require.ensure(['../organizador/Criar.vue'], () => {
+        resolve(require('../organizador/Criar.vue'));
     });
 };
 export const routes = [{
