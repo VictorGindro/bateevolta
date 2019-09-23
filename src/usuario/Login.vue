@@ -23,9 +23,8 @@
                                     <v-btn @click="clear">
                                         Clear
                                     </v-btn>
-
-                                    <v-btn >
-                                        Forgot Password?
+                                    <v-btn @click="cadastro">
+                                        Cadastre-se
                                     </v-btn>
                                 </v-layout>
                             </v-form>
@@ -56,6 +55,9 @@ export default {
         },
         clear() {
             this.$refs.form.reset();
+        },
+        cadastro(){
+            this.$router.push("/criar");
         }
     }
 }

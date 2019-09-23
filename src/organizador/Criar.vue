@@ -4,7 +4,7 @@
             <v-flex xs12 sm4 elevation-6>
                 <v-toolbar class="pt-5" color="rgb(247,245,215)">
                     <v-toolbar-title>
-                        <h4>Bem Vindo de volta!</h4>
+                        <h4>Crie sua conta</h4>
                     </v-toolbar-title>
                 </v-toolbar>
                 <v-card>

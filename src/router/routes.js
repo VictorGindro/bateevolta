@@ -1,6 +1,5 @@
 import Card from '../components/Card.vue';
 import Popup from '../components/Popup.vue';
-import Header from '../components/Header.vue';
 // Lazy loading
 const Login = resolve => {
     require.ensure(['../usuario/Login.vue'], () => {
@@ -13,8 +12,8 @@ const List = resolve => {
     });
 };
 const Create = resolve => {
-    require.ensure(['../organizador/Criar.vue'], () => {
-        resolve(require('../organizador/Criar.vue'));
+    require.ensure(['../usuario/Criar.vue'], () => {
+        resolve(require('../usuario/Criar.vue'));
     });
 };
 export const routes = [{
@@ -22,15 +21,13 @@ export const routes = [{
         components: {
             default: List,
             'card': Card,
-            'popup': Popup,
-            'header': Header
+            'popup': Popup
         },
     },
     {
         path: '/criar',
         components: {
             default: Create,
-            'header': Header
         },
 
     },

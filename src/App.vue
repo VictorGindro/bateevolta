@@ -6,9 +6,21 @@
       <div class="flex-grow-1"></div>
 
       <v-btn icon>
-        <v-icon>search</v-icon>
+        <v-icon>person</v-icon>
       </v-btn>
     </v-app-bar>
+            <v-navigation-drawer color="rgb(41, 163, 163)" v-model="drawer" app clipped dark>
+            <v-list dense>
+                <v-list-item>
+                    <v-list-item-action>
+                        <v-icon>list</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title>Minhas compras</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
     <v-content>
       <router-view></router-view>
     </v-content>

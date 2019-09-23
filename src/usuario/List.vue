@@ -9,7 +9,7 @@
         <Card class="ma-1" />
       </v-col>
     </v-layout>
-    <v-bottom-navigation :value="activeBtn" light grow color="rgb(70, 180, 199)">
+    <!-- <v-bottom-navigation :value="activeBtn" light grow color="rgb(70, 180, 199)">
       <v-btn>
         <span>Recentes</span>
         <v-icon>history</v-icon>
@@ -24,7 +24,7 @@
         <span>Recomendado</span>
         <v-icon>visibility</v-icon>
       </v-btn>
-    </v-bottom-navigation>
+    </v-bottom-navigation> -->
   </v-container>
 </template>
 
