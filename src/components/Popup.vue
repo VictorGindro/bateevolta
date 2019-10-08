@@ -39,9 +39,9 @@
             </v-col>
             <v-col cols="6">
               <v-layout justify-space-between>
-                <v-dialog v-model="buy" max-width="200px">
-                  <template v-slot:activator="{ on }">
-                    <v-btn class="mx-2" v-on="on" fab small color="white">
+                <v-dialog v-model="buy" v-if=" this.$router.history.current.path !='/compras'" max-width="200px">
+                  <template v-slot:activator="{ on }" >
+                    <v-btn class="mx-2" v-on="on" fab small color="white" >
                       <v-icon color="rgb(70, 180, 199)">shopping_cart</v-icon>
                     </v-btn>
                   </template>
@@ -57,6 +57,34 @@
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
+                <div v-if="this.$router.history.current.path =='/compras'">
+                  
+
+                  <v-dialog v-model="cancelar" max-width="200px">
+                  <template v-slot:activator="{ on }" >
+                    <v-btn class="mx-2" v-on="on" color="white" >
+                      <!-- <v-icon color="rgb(70, 180, 199)">cancel_presentation</v-icon> -->
+                      Cancelar Viagem
+                    </v-btn>
+                  </template>
+                  <v-card>
+                    <v-card-title>
+                      <span class="headline text-center">Deseja Cancelar?</span>
+                    </v-card-title>
+                    <v-card-actions>
+                      <v-layout justify-center class="my-2">
+                      <v-btn @click="cancelar=!cancelar">Sim</v-btn>
+                      <v-btn @click="cancelar=!cancelar">Não</v-btn>
+                      </v-layout>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+
+
+
+
+                </div>
+                
               </v-layout>
             </v-col>
             <v-col cols="12" sm="8">
@@ -76,6 +104,7 @@
     data:()=>( {
         dialog: false,
         buy: false,
+        cancelar:false,
     }),
     methods:{
       comprar(){

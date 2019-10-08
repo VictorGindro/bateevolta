@@ -6,6 +6,11 @@ const Login = resolve => {
         resolve(require('../usuario/Login.vue'));
     });
 };
+const Home = resolve => {
+    require.ensure(['../usuario/Home.vue'], () => {
+        resolve(require('../usuario/Home.vue'));
+    });
+};
 const List = resolve => {
     require.ensure(['../usuario/List.vue'], () => {
         resolve(require('../usuario/List.vue'));
@@ -14,6 +19,11 @@ const List = resolve => {
 const Create = resolve => {
     require.ensure(['../usuario/Criar.vue'], () => {
         resolve(require('../usuario/Criar.vue'));
+    });
+};
+const Compras = resolve => {
+    require.ensure(['../usuario/Compras.vue'], () => {
+        resolve(require('../usuario/Compras.vue'));
     });
 };
 export const routes = [{
@@ -25,9 +35,23 @@ export const routes = [{
         },
     },
     {
+        path: '/home',
+        components: {
+            default: Home,
+        },
+
+    },
+    {
         path: '/criar',
         components: {
             default: Create,
+        },
+
+    },
+    {
+        path: '/compras',
+        components: {
+            default: Compras,
         },
 
     },
