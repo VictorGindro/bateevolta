@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid fill-height class="login">
+    <v-container fluid fill-height class="background">
         <v-layout flex align-center justify-center>
             <v-flex xs12 sm4 elevation-6>
                 <v-toolbar class="pt-5" color="rgb(247,245,215)">
@@ -34,9 +34,11 @@
                                         :class="{'grey rgb(70, 180, 199) white--text':valid,disabled:!valid}">
                                         Criar
                                     </v-btn>
-
                                     <v-btn @click="clear">
                                         Clear
+                                    </v-btn>
+                                    <v-btn @click="login">
+                                        Faça login
                                     </v-btn>
                                 </v-layout>
                                
@@ -118,3 +120,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+.background{
+    background-image:url("../assets/highway.jpg");
+    background-size: cover;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app clipped-left :collapse='!drawer' color='rgb(51, 204, 204)' dark >
+    <v-app-bar app clipped-left color='rgb(51, 204, 204)' dark >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer " v-if=" this.$router.history.current.path !='/home'"></v-app-bar-nav-icon>
       <v-img><v-btn icon @click="home">
         <v-icon>home</v-icon>
@@ -41,7 +41,7 @@ export default {
    // Header
   },
   data: () => ({
-    drawer: true,
+    drawer: false,
   }),
       methods:{
       compras(){
@@ -51,7 +51,6 @@ export default {
         this.$router.push("/listar");
       },
       home(){
-        this.drawer = true;
         this.$router.push("/home");
       }
     }

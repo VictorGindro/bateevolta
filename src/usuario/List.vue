@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="text-center">
+    <div class="text-center ">
       <v-img :src="require('../assets/BeV/f1-w.png')" class="mb-3"  contain height="150"></v-img>
       <h2 class="headline font-weight-bold mb-3">Viagens Disponiveis:</h2>
     </div>
@@ -24,3 +24,9 @@ export default {
   }),
 };
 </script>
+<style scoped>
+.background{
+    background-image: url("../assets/nsky.jpg");
+    background-size: cover;
+}
+</style>

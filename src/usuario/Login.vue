@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid fill-height class="login">
+    <v-container fluid fill-height class="background">
         <v-layout flex align-center justify-center>
             <v-flex xs12 sm4 elevation-6>
                 <v-toolbar class="pt-5" color="rgb(247,245,215)" >
@@ -47,7 +47,9 @@ export default {
             (v) => /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(v) || ' O e-mail Precisa ser válido'
         ]
 
-    }),methods:{
+    }),beforeMount(){
+    
+  },methods:{
         submit() {
             if (this.$refs.form.validate()) {
                     this.$router.push("/listar");
@@ -62,3 +64,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+.background{
+    background-image:url("../assets/highway.jpg");
+    background-size: cover;
+}
+</style>

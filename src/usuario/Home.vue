@@ -73,8 +73,11 @@
                 <v-layout column align-center justify-center>
                     <div class="headline white--text mb-4 text-center">Quer fazer um bate volta o fim de semana?</div>
                     <em>Use nosso aplicativo!</em>
-                    <v-btn class="mt-12" color="rgb(41, 163, 163)" dark large href="/criar">
+                    <v-btn class="mt-12" color="rgb(41, 163, 163)" dark large @click="create()" >
                         Use Já!
+                    </v-btn>
+                    <v-btn class="mt-12" color="rgb(41, 163, 163)" dark large @click="login()" >
+                        faça login!
                     </v-btn>
                 </v-layout>
             </v-parallax>
@@ -148,8 +151,16 @@ export default {
           if(this.clicks===3){
               window.location.href = "https://guitadeu.github.io/ferias/";
           }else{
+              //eslint-disable-next-line
               this.clicks++;
           }
+      },
+      create(){
+          //eslint-disable-next-line
+          this.$router.push("/criar")
+      },
+      login(){
+          this.$router.push("/login")
       }
   }
 }

@@ -26,6 +26,11 @@ const Compras = resolve => {
         resolve(require('../usuario/Compras.vue'));
     });
 };
+const Erou = resolve => {
+    require.ensure(['../usuario/404.vue'], () => {
+        resolve(require('../usuario/404.vue'));
+    });
+};
 export const routes = [{
         path: '/listar',
         components: {
@@ -56,7 +61,14 @@ export const routes = [{
 
     },
     {
+        path: '/login',
+        components: {
+            default: Login,
+        },
+
+    },
+    {
         path: '*',
-        component: Login,
+        component: Erou,
     }
 ]
