@@ -1,5 +1,6 @@
 <template>
-        <section>
+<v-slide-x-reverse-transition >
+        <section  v-show="show">
             <v-parallax src="../assets/beach.jpg" height="600">
                 <v-layout column align-center justify-center class="white--text">
                     <img src="../assets/BeV/logo_transparent.png" @click="easterEgg" alt="Vuetify.js" height="200">
@@ -8,7 +9,8 @@
                 </v-layout>
             </v-parallax>
 
-            <v-layout  column wrap class="my-12" align-center>
+            
+            <v-layout column wrap class="my-12" align-center>
                 <v-flex xs12 sm4 class="my-4">
                     <div class="text-center">
                         <h2 class="headline">Comece a Viajar conosco!</h2>
@@ -68,7 +70,8 @@
                     </v-container>
                 </v-flex>
             </v-layout>
-
+           
+            
             <v-parallax src="../assets/praia.jpg" height="380">
                 <v-layout column align-center justify-center>
                     <div class="headline white--text mb-4 text-center">Quer fazer um bate volta o fim de semana?</div>
@@ -137,16 +140,19 @@
                 </v-layout>
             </v-container>
         </section>
-
-
+ </v-slide-x-reverse-transition>
 </template>
 
  <script>
 export default {
    data: () => ({
     title: "queijo",
-    clicks:0
-  }),methods:{
+    clicks:0,
+    show:false
+  }),mounted(){
+      this.show=true;
+  }
+  ,methods:{
       easterEgg(){
           if(this.clicks===3){
               window.location.href = "https://guitadeu.github.io/ferias/";
