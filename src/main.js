@@ -6,6 +6,8 @@ import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 import VueRouter from 'vue-router'
 import { routes } from './router/routes'
+import VueTheMask from 'vue-the-mask'
+Vue.use(VueTheMask)
 
 Vue.use(VueRouter)
 

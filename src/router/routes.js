@@ -31,6 +31,11 @@ const Erou = resolve => {
         resolve(require('../usuario/404.vue'));
     });
 };
+const CriarViagem = resolve => {
+    require.ensure(['../usuario/CrirarViagem.vue'], () => {
+        resolve(require('../usuario/CrirarViagem.vue'));
+    });
+};
 export const routes = [{
         path: '/listar',
         components: {
@@ -43,6 +48,13 @@ export const routes = [{
         path: '/home',
         components: {
             default: Home,
+        },
+
+    },
+    {
+        path: '/viagem',
+        components: {
+            default: CriarViagem,
         },
 
     },

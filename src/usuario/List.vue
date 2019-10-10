@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div class="text-center ">
-      <v-img :src="require('../assets/BeV/f1-w.png')" class="mb-3"  contain height="150"></v-img>
+      <v-img :src="require('../assets/BeV/BeV.png')" contain height="600"></v-img>
       <h2 class="headline font-weight-bold mb-3">Viagens Disponiveis:</h2>
     </div>
     <v-layout text-center wrap class="mb-5 ml-5 pb-5">

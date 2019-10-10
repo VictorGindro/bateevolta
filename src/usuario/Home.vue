@@ -3,8 +3,8 @@
         <section  v-show="show">
             <v-parallax src="../assets/beach.jpg" height="600">
                 <v-layout column align-center justify-center class="white--text">
-                    <img src="../assets/BeV/logo_transparent.png" @click="easterEgg" alt="Vuetify.js" height="200">
-                    <h1 class="white--text mb-2 display-1 text-center"> Bate & Volta</h1>
+                    <h1 class="white--text mt-4 display-1 text-center"> Bate & Volta</h1>
+                         <img src="../assets/BeV/BeV.png" title="Bate & Volta"  @click="easterEgg" alt="Vuetify.js" height="500">
                     <div class="subheading mb-4 text-center">Powered by FIap</div>
                 </v-layout>
             </v-parallax>

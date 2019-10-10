@@ -17,15 +17,16 @@
                                 <v-text-field label="E-mail" outline color="rgb(70, 180, 199)" v-model="email"
                                     :rules="emailRules" required />
                                 <v-divider />
-                                <v-text-field :rules="cpfRules" label="CPF" outline color="rgb(70, 180, 199)" v-model="cpf"/>
-                                <!-- <v-text-field label="Senha" outline color="rgb(70, 180, 199)" v-model="password"
+                                <v-text-field :rules="cpfRules" label="CPF" v-mask="'###.###.###-##'" outline color="rgb(70, 180, 199)" v-model="cpf"/>
+                                <v-divider />
+                                <v-text-field label="Senha" outline color="rgb(70, 180, 199)" v-model="password"
                                     :rules="passwordRules" min="8" :append-icon="e1?'visibility_off':'visibility'"
                                     @click:append="()=>(e1=!e1)" :type="e1?'password':'text'" required counter />
                                 
                                 <v-text-field label="Confirme sua senha" outline color="rgb(70, 180, 199)"
                                     v-model="passwordConfirm" :rules="passwordRules" min="8"
                                     :append-icon="e1?'visibility_off':'visibility'" @click:append="()=>(e1=!e1)"
-                                    :type="e1?'password':'text'" required counter /> -->
+                                    :type="e1?'password':'text'" required counter />
                                 <v-divider />
                                 <v-checkbox v-model="checkbox" label="Organizador" color="rgb(70, 180, 199)"/>
                                 <v-layout justify-space-between>

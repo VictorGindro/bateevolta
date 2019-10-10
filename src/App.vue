@@ -22,10 +22,15 @@
             <v-icon>person</v-icon>
           </v-btn>
         </template>
-        <v-list>
-          <v-list-item>
+        <v-list >
+          <v-list-item v-if=" this.$router.history.current.path =='/home'" >
             <v-list-item-title @click="login()">
               <v-btn>Login</v-btn>
+            </v-list-item-title>
+          </v-list-item>
+          <v-list-item v-else-if="this.$router.history.current.path !='/login'" >
+            <v-list-item-title @click="login()">
+              <v-btn>Logout</v-btn>
             </v-list-item-title>
           </v-list-item>
         </v-list>

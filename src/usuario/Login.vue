@@ -11,8 +11,8 @@
                     <v-card-text class="pt-4">
                         <div>
                             <v-form v-model="valid" ref="form">
-                                <v-text-field label="E-mail" outline color="rgb(70, 180, 199)" v-model="email" :rules="emailRules" required/>
-                                <v-text-field label="Password" outline color="rgb(70, 180, 199)" v-model="password" :rules="passwordRules" min="8"
+                                <v-text-field label="E-mail" clearable outline color="rgb(70, 180, 199)" v-model="email" :rules="emailRules" required/>
+                                <v-text-field label="Password" clearable="true" outline color="rgb(70, 180, 199)" v-model="password" :rules="passwordRules" min="8"
                                  :append-icon="e1?'visibility_off':'visibility'" @click:append="()=>(e1=!e1)" :type="e1?'password':'text'" required counter/><!-- prepend-icon="visibility"-->
                                 <v-layout justify-space-between>
 
