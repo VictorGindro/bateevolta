@@ -4,7 +4,7 @@
             <v-parallax src="../assets/beach.jpg" height="600">
                 <v-layout column align-center justify-center class="white--text">
                     <h1 class="white--text mt-4 display-1 text-center"> Bate & Volta</h1>
-                         <img src="../assets/BeV/BeV.png" title="Bate & Volta"  @click="easterEgg" alt="Vuetify.js" height="500">
+                         <img src="../assets/BeV/BeVTranparentSmall.png" title="Bate & Volta"  @click="easterEgg" alt="Vuetify.js" height="150">
                     <div class="subheading mb-4 text-center">Powered by FIap</div>
                 </v-layout>
             </v-parallax>
