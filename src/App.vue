@@ -16,43 +16,48 @@
       </v-btn>
 
 
-      <v-menu offset-y>
-        <template v-slot:activator="{ on }">
-          <v-btn icon dark v-on="on">
-            <v-icon>person</v-icon>
+      <v-speed-dial v-model="on" direction="bottom" :open-on-hover="hover" :transition="transition">
+        <template v-slot:activator>
+          <v-btn v-model="on" dark icon>
+            <v-icon v-if="on">mdi-close</v-icon>
+            <v-icon v-else>person</v-icon>
           </v-btn>
         </template>
-          <v-card>
-            <v-card-actions>
-              <v-row>
-              <v-btn @click="login()">Login</v-btn>
-              </v-row>
-              <v-row>
-              <v-btn @click="login()">Logout</v-btn>
-              </v-row>
-            </v-card-actions>
-          </v-card>
-      </v-menu>
-    </v-app-bar>
-    <v-navigation-drawer v-if=" this.$router.history.current.path !='/home'" color="rgb(41, 163, 163)" v-model="drawer"
-      app clipped dark>
-      <v-list dense>
-        <v-list-item @click="compras()">
-          <v-list-item-action>
-            <v-icon>calendar_today</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Minhas compras</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item @click="diponiveis()">
-          <v-list-item-action>
-            <v-icon>list</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Viagens Disponiveis</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+        <v-btn fab dark small color="teal" @click="login()">
+          <v-icon>last_page</v-icon>
+        </v-btn>
+        <v-btn fab dark small color="teal">
+          <v-icon>more_vert</v-icon>
+        </v-btn>
+      </v-speed-dial>
+      </v-app-bar>
+      <v-navigation-drawer v-if=" this.$router.history.current.path !='/home'" color="rgb(41, 163, 163)"
+        v-model="drawer" app clipped dark>
+        <v-list dense>
+          <v-list-item @click="diponiveis()">
+            <v-list-item-action>
+              <v-icon>list</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Viagens Disponiveis</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item @click="compras()">
+            <v-list-item-action>
+              <v-icon>calendar_today</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Minhas compras</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+                    <v-list-item @click="criarViagem()">
+            <v-list-item-action>
+              <v-icon>add_box</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Nova viagem</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-content>
@@ -70,10 +75,10 @@ export default {
   },
   data: () => ({
     drawer: false,
-    fab:  false,
-    items: [
-        { title: 'Login' },
-      ],
+    fab: false,
+    on: false,
+    hover: false,
+    transition: 'slide-y-reverse-transition',
   }),
       methods:{
       compras(){
@@ -87,6 +92,9 @@ export default {
       },
       login(){
           this.$router.push("/login")
+      },
+        criarViagem(){
+          this.$router.push("/viagem")
       }
     }
 };
