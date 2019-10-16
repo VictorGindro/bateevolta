@@ -2,7 +2,7 @@
     <v-container fluid fill-height class="background">
         <v-layout flex align-center justify-center>
             <v-flex xs12 sm4 elevation-6>
-                <v-toolbar class="pt-5" color="rgb(247,245,215)" >
+                <v-toolbar class="pt-5" color="rgb(247,245,215)">
                     <v-toolbar-title>
                         <h4>Bem Vindo de volta!</h4>
                     </v-toolbar-title>
@@ -11,21 +11,31 @@
                     <v-card-text class="pt-4">
                         <div>
                             <v-form v-model="valid" ref="form">
-                                <v-text-field label="E-mail" clearable outline color="rgb(70, 180, 199)" v-model="email" :rules="emailRules" required/>
-                                <v-text-field label="Password" clearable="true" outline color="rgb(70, 180, 199)" v-model="password" :rules="passwordRules" min="8"
-                                 :append-icon="e1?'visibility_off':'visibility'" @click:append="()=>(e1=!e1)" :type="e1?'password':'text'" required counter/><!-- prepend-icon="visibility"-->
+                                <v-text-field label="E-mail" outline color="rgb(70, 180, 199)" v-model="email"
+                                    :rules="emailRules" required />
+                                <v-text-field label="Password" outline color="rgb(70, 180, 199)" v-model="password"
+                                    :rules="passwordRules" min="8" :append-icon="e1?'visibility_off':'visibility'"
+                                    @click:append="()=>(e1=!e1)" :type="e1?'password':'text'" required counter />
+                                <!-- prepend-icon="visibility"-->
                                 <v-layout justify-space-between>
 
-                                    <v-btn @click="submit" :class="{'grey rgb(70, 180, 199) white--text':valid,disabled:!valid}">
-                                        Login
+                                    <v-btn @click="cadastro">
+                                        Cadastre-se
                                     </v-btn>
+
 
                                     <v-btn @click="clear">
                                         Clear
                                     </v-btn>
-                                    <v-btn @click="cadastro">
-                                        Cadastre-se
+                                    <v-btn @click="submit"
+                                        :class="{'grey rgb(70, 180, 199) white--text':valid,disabled:!valid}">
+                                        Login
                                     </v-btn>
+
+
+                                    <v-snackbar v-model="snackbar" color="teal" :timeout="2500">
+                                        Login ou senha incorretos! Por favor tente novamente.
+                                    </v-snackbar>
                                 </v-layout>
                             </v-form>
                         </div>
@@ -36,6 +46,7 @@
     </v-container>
 </template>
 <script>
+import axios from 'axios';
 export default {
     data: () => ({
         e1: true,
@@ -45,14 +56,31 @@ export default {
         passwordRules: [(v) => !!v || "Digite sua senha"],
         emailRules: [(v) => !!v || "Digite seu e-mail",
             (v) => /^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(v) || ' O e-mail Precisa ser válido'
-        ]
+        ],
+        snackbar:false
 
     }),beforeMount(){
     
   },methods:{
         submit() {
             if (this.$refs.form.validate()) {
-                    this.$router.push("/listar");
+
+                axios.post("http://batevolta-api.herokuapp.com/auth", {
+                    "email": this.email,
+                    "password": this.password
+                }).then((response) => {
+                    this.$store.dispatch('login',response).then(() => {
+                        // eslint-disable-next-line no-console
+                        console.log(response)
+                        this.$router.push("/listar");
+                    }, error => {
+                        // eslint-disable-next-line no-console
+                        console.log(error);
+                    });
+                }).catch(
+                    () => {
+                        this.snackbar=true;
+                    });
             }
         },
         clear() {

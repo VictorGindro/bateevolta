@@ -159,8 +159,8 @@ export default {
         names: ["Guilherme Tadeu", "Victor Gindro", "Paulo Sthiven", "Victor H.B. Ferreira", "Ygor Machado Villela"],
         photos: ["https://media.licdn.com/dms/image/C4D03AQGDRP2MBOHBlQ/profile-displayphoto-shrink_800_800/0?e=1576108800&v=beta&t=ICETymR2OI_jsbEblJn-eia8M1y9zqQrwa_k9VMUZGY",
          "https://media.licdn.com/dms/image/C4D03AQE3snyWKPrg8w/profile-displayphoto-shrink_200_200/0?e=1576108800&v=beta&t=ar5d6_z3151fgJltf0-Fzn5-xCnipVDlZWoM4gppmJ0",
-          "https://pbs.twimg.com/media/DeFeMvfVMAApxWb.jpg", "https://pbs.twimg.com/media/DNGd_8hVQAAbVjZ.jpg",
-           '../src/assets/ygor.jpg'],
+          "https://i.imgur.com/oUOnc18.jpg", "https://i.imgur.com/u0IXBQo.jpg",
+           'https://i.imgur.com/OycLaLd.jpg'],
         links: ["https://github.com/GuiTadeu", "https://github.com/VictorGindro","https://github.com/paulosthiven25","","https://github.com/YgorVillela"]
     },
     show:false

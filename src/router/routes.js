@@ -1,5 +1,7 @@
 import Card from '../components/Card.vue';
 import Popup from '../components/Popup.vue';
+
+
 // Lazy loading
 const Login = resolve => {
     require.ensure(['../usuario/Login.vue'], () => {
@@ -43,12 +45,18 @@ export const routes = [{
             'card': Card,
             'popup': Popup
         },
+        meta: {
+            auth: true
+        }
     },
     {
         path: '/home',
         components: {
             default: Home,
         },
+        meta: {
+            auth: false
+        }
 
     },
     {
@@ -56,6 +64,9 @@ export const routes = [{
         components: {
             default: CriarViagem,
         },
+        meta: {
+            auth: true
+        }
 
     },
     {
@@ -63,6 +74,9 @@ export const routes = [{
         components: {
             default: Create,
         },
+        meta: {
+            auth: true
+        }
 
     },
     {
@@ -70,6 +84,9 @@ export const routes = [{
         components: {
             default: Compras,
         },
+        meta: {
+            auth: true
+        }
 
     },
     {
@@ -77,10 +94,17 @@ export const routes = [{
         components: {
             default: Login,
         },
+        meta: {
+            auth: false
+        }
 
     },
     {
-        path: '*',
-        component: Erou,
+        path: '/*',
+        component: Home,
+    },
+    {
+        path: 'error',
+        component: Erou
     }
 ]

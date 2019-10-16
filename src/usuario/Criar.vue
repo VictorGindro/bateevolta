@@ -13,12 +13,12 @@
                             <v-form v-model="valid" ref="form">
                                 <v-text-field label="Nome" outline color="rgb(70, 180, 199)" v-model="nome"
                                    :rules="nameRules"  required />
-                                <v-divider />
+                                
                                 <v-text-field label="E-mail" outline color="rgb(70, 180, 199)" v-model="email"
                                     :rules="emailRules" required />
-                                <v-divider />
+                                
                                 <v-text-field :rules="cpfRules" label="CPF" v-mask="'###.###.###-##'" outline color="rgb(70, 180, 199)" v-model="cpf"/>
-                                <v-divider />
+                                
                                 <v-text-field label="Senha" outline color="rgb(70, 180, 199)" v-model="password"
                                     :rules="passwordRules" min="8" :append-icon="e1?'visibility_off':'visibility'"
                                     @click:append="()=>(e1=!e1)" :type="e1?'password':'text'" required counter />
@@ -27,19 +27,18 @@
                                     v-model="passwordConfirm" :rules="passwordRules" min="8"
                                     :append-icon="e1?'visibility_off':'visibility'" @click:append="()=>(e1=!e1)"
                                     :type="e1?'password':'text'" required counter />
-                                <v-divider />
+                                
                                 <v-checkbox v-model="checkbox" label="Organizador" color="rgb(70, 180, 199)"/>
                                 <v-layout justify-space-between>
-
-                                    <v-btn @click="submit"
-                                        :class="{'grey rgb(70, 180, 199) white--text':valid,disabled:!valid}">
-                                        Criar
+                                    <v-btn @click="login">
+                                        Faça login
                                     </v-btn>
                                     <v-btn @click="clear">
                                         Clear
                                     </v-btn>
-                                    <v-btn @click="login">
-                                        Faça login
+                                    <v-btn @click="submit"
+                                        :class="{'grey rgb(70, 180, 199) white--text':valid,disabled:!valid}">
+                                        Criar
                                     </v-btn>
                                 </v-layout>
                                
@@ -78,12 +77,16 @@ export default {
         submit() {
             if (this.$refs.form.validate()) {
                 if(this.checkbox){
-                    axios.post("http://batevolta-api.herokuapp.com/organizador/create", {
-                    "cpf": this.cpf,
-                    "email": this.email,
-                    "fotoPerfil": "string",
-                    "nome": this.nome
-                }).then((response) => {
+                    let user = {
+                        "cpf": this.cpf,
+                        "email": this.email,
+                        "fotoPerfil": "string",
+                        "nome": this.nome,
+                        "senha": this.password
+                    };
+                    // eslint-disable-next-line
+                    console.log(user);
+                    axios.post("http://batevolta-api.herokuapp.com/organizador/cadastrar", user).then((response) => {
                     // eslint-disable-next-line
                     console.log(response);
                     this.$router.push("/listar");
@@ -92,11 +95,12 @@ export default {
                     console.log(e.data)
                 });
                 }else{
-                    axios.post("http://batevolta-api.herokuapp.com//turista/create", {
+                    axios.post("http://batevolta-api.herokuapp.com/turista/cadastrar", {
                     "cpf": this.cpf,
                     "email": this.email,
                     "fotoPerfil": "string",
-                    "nome": this.nome
+                    "nome": this.nome,
+                    "senha": this.password
                 }).then((response) => {
                     // eslint-disable-next-line
                     console.log(response);

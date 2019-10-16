@@ -5,7 +5,7 @@
       <h2 class="headline font-weight-bold mb-3">Viagens Disponiveis:</h2>
     </div>
     <v-layout text-center wrap class="mb-5 ml-5 pb-5">
-      <v-col class="ml-5" v-for="n in 12" :key="n">
+      <v-col class="ml-5" v-for="card in cards" :key="card">
         <Card class="ma-1" />
       </v-col>
     </v-layout>
@@ -14,14 +14,20 @@
 
 <script>
 import Card from '../components/Card'
+import axios from 'axios'
 export default {
   components: {
     Card
   },
   data: () => ({
-    activeBtn: 1
+    activeBtn: 1,
+    cards:[]
     
-  }),
+  }),beforeMount(){
+    axios.get("http://batevolta-api.herokuapp.com/viagem/retrieve").then((response)=>{
+      this.cards = response.data;
+    }).catch();
+  }
 };
 </script>
 <style scoped>
