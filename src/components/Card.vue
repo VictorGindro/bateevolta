@@ -1,27 +1,24 @@
  <template>
-     <v-card  elevation="24" class="mx" max-width="225" color="rgb(195,222,233)">
+     <v-card  elevation="24" class="mx" height="200" width="350" color="rgb(195,222,233)">
          <v-system-bar color="rgb(247,245,215)" lights-on height="50" class="justify-center">
-             <v-btn icon color="white">
-                 <v-icon color="rgb(70, 180, 199)">supervisor_account</v-icon>
-             </v-btn>
-             <div>Kevin</div>
+                 <v-icon color="rgb(70, 180, 199)" large>commute</v-icon>
              <v-spacer />
              <div class="mt-1">
-                 <v-list-item-subtitle class="fill-height">Ida: 16/12/2020</v-list-item-subtitle>
-                 <v-list-item-subtitle class="fill-height">Volta: 19/12/2020</v-list-item-subtitle>
+                 <v-list-item-subtitle class="fill-height"><v-icon>local_atm</v-icon> {{viagem.preco}} R$</v-list-item-subtitle>
+                 <v-list-item-subtitle class="fill-height"><v-icon>airline_seat_legroom_reduced</v-icon> {{viagem.qtdVagas}} vagas</v-list-item-subtitle>
              </div>
          </v-system-bar>
          <v-list two-line>
              <v-img aspect-ratio="2.00" src="https://wallpaperbro.com/img/212940.jpg">
                  <v-list-item>
                      <v-list-item-avatar>
-                         <Popup/>
+                         <Popup :id="viagem.id" />
                      </v-list-item-avatar>
                      <v-list-item-content >
-                         <v-list-item-title  class="fill-height" align="center" justify="center">Santos
-                         </v-list-item-title>
-                         <v-list-item-title class="fill-height" align="center" justify="center">Praia Grande
-                         </v-list-item-title>
+                         <v-card  class="fill-height" align="center" justify="center">{{viagem.nome}}
+                         </v-card>
+                         <v-card class="fill-height" color="white" align="center" justify="center">{{viagem.descricao}}
+                         </v-card>
                      </v-list-item-content>
                      <v-list-item-action>
                      </v-list-item-action>
@@ -33,6 +30,7 @@
 
 <script>
 import Popup from './Popup'
+import axios from 'axios'
   export default {
         components: {
     Popup
@@ -42,7 +40,12 @@ import Popup from './Popup'
       }
     },props:{
         viagem: Object,
-    },
+    },methods:{
+        getViagem(id){
+            // eslint-disable-next-line
+            axios.get("http://batevolta-api.herokuapp.com/viagem/"+id).then((response)=>{console.log(response.data)}).catch((e)=>{console.log(e)});
+        }
+    }
   }
 </script>
 <style scoped>

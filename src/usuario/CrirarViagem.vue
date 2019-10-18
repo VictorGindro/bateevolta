@@ -115,7 +115,7 @@ export default {
               // eslint-disable-next-line no-console
               console.log(response);
               this.save = false
-              this.$router.push("/list");
+              this.$router.push("/listar");
           }).catch((e) => {
               // eslint-disable-next-line no-console
               console.log(e);

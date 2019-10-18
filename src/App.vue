@@ -27,7 +27,7 @@
         </v-btn>
       </v-speed-dial>
     </v-app-bar>
-    <v-navigation-drawer color="rgb(41, 163, 163)" v-model="drawer" app clipped dark>
+    <v-navigation-drawer color="rgb(41, 163, 163)" v-model="drawer"  app clipped dark>
       <v-list dense>
         <v-list-item @click="diponiveis()">
           <v-list-item-action>
@@ -37,7 +37,7 @@
             <v-list-item-title>Viagens Disponiveis</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="compras()">
+        <v-list-item v-if="this.$store.getters.user.role.authority != 'ROLE_ORGANIZADOR'" @click="compras()">
           <v-list-item-action>
             <v-icon>calendar_today</v-icon>
           </v-list-item-action>
@@ -45,7 +45,7 @@
             <v-list-item-title>Minhas compras</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item @click="criarViagem()">
+        <v-list-item v-if="this.$store.getters.user.role.authority == 'ROLE_ORGANIZADOR'" @click="criarViagem()">
           <v-list-item-action>
             <v-icon>library_add</v-icon>
           </v-list-item-action>
@@ -53,7 +53,7 @@
             <v-list-item-title>Nova viagem</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-         <v-list-item @click="criarViagem()">
+         <v-list-item v-if="this.$store.getters.user.role.authority != 'ROLE_ORGANIZADOR'">
           <v-list-item-action>
             <v-icon>library_books</v-icon>
           </v-list-item-action>
@@ -82,8 +82,7 @@ export default {
     on: false,
     hover: false,
     transition: 'slide-y-reverse-transition',
-  }),
-      methods:{
+  }),methods:{
       compras(){
         this.$router.push("/compras");
       },

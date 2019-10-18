@@ -1,26 +1,38 @@
 <template>
-  <v-container>
-    <div class="text-center">
-      <v-img :src="require('../assets/BeV/BeVTranparentSmall.png')" class="mb-3"  contain height="200"></v-img>
-      <h2 class="headline font-weight-bold mb-3">Suas Viagens:</h2>
+  <v-container >
+    <div class="text-center ">
+      <v-img :src="require('../assets/BeV/BeVTranparentSmall.png')" contain height="200"></v-img>
+      <h2 class="headline font-weight-bold mb-3">Minhas Compras:</h2>
     </div>
-    <v-layout text-center wrap class="mb-5 ml-5 pb-5">
-      <v-col class="ml-5" v-for="n in 1" :key="n">
-        <Card class="ma-1" />
-      </v-col>
-    </v-layout>
+      <v-row>
+        <v-layout text-center justify-space-around wrap class="mb-5 ml-5 pb-5" v-for="n in cards.length" :key="n">
+          <v-col>
+            <Card class="ma-1" :viagem="cards[n-1]"/>
+          </v-col>
+        </v-layout>
+      </v-row>
   </v-container>
 </template>
 
 <script>
 import Card from '../components/Card'
+import axios from 'axios'
 export default {
-  components: {
-    Card
-  },
-  data: () => ({
-    activeBtn: 1
-    
-  }),
-};
+    components: {
+      Card
+    },
+    data: () => ({
+      activeBtn: 1,
+      cards:[]
+      
+    }),beforeMount(){
+      axios.get("http://batevolta-api.herokuapp.com/turista/"+this.$store.getters.user.id+"/ingressos",{
+         "headers": {
+                  Authorization: 'Bearer ' + this.$store.getters.user.token
+              }
+      }).then((response)=>{
+        this.cards = response.data;
+      }).catch();
+  }
+}
 </script>

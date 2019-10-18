@@ -95,19 +95,20 @@ export default {
                     console.log(e.data)
                 });
                 }else{
-                    axios.post("http://batevolta-api.herokuapp.com/turista/cadastrar", {
-                    "cpf": this.cpf,
-                    "email": this.email,
-                    "fotoPerfil": "string",
-                    "nome": this.nome,
-                    "senha": this.password
-                }).then((response) => {
+                    let user = {
+                        "cpf": this.cpf,
+                        "email": this.email,
+                        "fotoPerfil": "string",
+                        "nome": this.nome,
+                        "senha": this.password
+                    };
+                    axios.post("http://batevolta-api.herokuapp.com/turista/cadastrar", user).then((response) => {
                     // eslint-disable-next-line
                     console.log(response);
                     this.$router.push("/listar");
                 }).catch((e) => {
                     // eslint-disable-next-line
-                    console.log(e.data)
+                    console.log(e)
                 });
                 }
                 

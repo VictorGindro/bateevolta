@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state:{
-        user:{},
+        user:{"role":{"authority":"none"}},
         viagens:[],
         isAuth:false
     },
@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
             state.isAuth=true;
         },
         logout(state){
-            state.user={};
+            state.user={"role":{"authority":"none"}};
             state.isAuth=false;
         },
         updateUser(state,user){

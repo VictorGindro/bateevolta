@@ -1,41 +1,40 @@
 <template>
-  <v-dialog v-model="dialog" max-width="600px">
-    <template v-slot:activator="{ on }">
-      <v-btn class="mx-2" v-on="on" fab small color="white">
-        <v-icon color="rgb(70, 180, 199)">directions_bus</v-icon>
+  <v-dialog v-model="dialog"  max-width="600px">
+    <template v-slot:activator="{ on }" >
+      <v-btn class="mx-2" v-on="on" fab small color="white" >
+        <v-icon  color="rgb(70, 180, 199)">directions_bus</v-icon>
       </v-btn>
     </template>
     <v-card>
+      <v-card-title class="white--text teal text-center">{{viagem.nome}}</v-card-title>
       <v-card-title>
-        <span class="headline">Informações sobre a Viagem</span>
-        <v-img height="200" width="400" src="https://wallpaperbro.com/img/212940.jpg"></v-img>
+        <v-img height="200" width="400" src="https://wallpaperbro.com/img/212940.jpg">
+        <v-card-subtitle class="white--text teal text-center">Oranizado por: {{viagem.nomeOrganizador}}</v-card-subtitle></v-img>
       </v-card-title>
       <v-card-text>
         <v-container>
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-list-item-title>Data de ida:</v-list-item-title>
-              <v-list-item-subtitle class="my-5">16/12/2020</v-list-item-subtitle>
+              <v-list-item-subtitle class="my-5">{{viagem.dataSaida}}</v-list-item-subtitle>
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-list-item-title>Data de volta:</v-list-item-title>
-              <v-list-item-subtitle class="mt-5">19/12/2020</v-list-item-subtitle>
+              <v-list-item-subtitle class="mt-5">{{viagem.dataChegada}}</v-list-item-subtitle>
             </v-col>
             <v-col cols="12" sm="6" md="4">
               <v-list-item-title>Organizador:</v-list-item-title>
-              <v-list-item-subtitle class="mt-5">Kevin</v-list-item-subtitle>
+              <v-list-item-subtitle class="mt-5">{{viagem.nomeOrganizador}}</v-list-item-subtitle>
             </v-col>
             <v-col cols="12">
               <v-list-item-title>Descrição:</v-list-item-title>
-              <p class="mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam id quam, culpa ea dolores
-                voluptates earum quis nihil sequi, dignissimos vel rem eius hic deleniti distinctio doloribus! Mollitia,
-                saepe quaerat?</p>
+              <p class="mt-5">{{viagem.descricao}}</p>
             </v-col>
             <v-col cols="6">
               <v-list-item-title>Ponto de saída:</v-list-item-title>
-              <v-list-item-subtitle class="mb-5">Quejo Nº:123</v-list-item-subtitle>
+              <v-list-item-subtitle class="mb-5">{{viagem.pontosEmbarques[0]}}</v-list-item-subtitle>
               <v-list-item-title>Ponto de chegada:</v-list-item-title>
-              <v-list-item-subtitle>presunto Nº:123</v-list-item-subtitle>
+              <v-list-item-subtitle>{{viagem.pontosEmbarques[1]}}</v-list-item-subtitle>
             </v-col>
             <v-col cols="6">
               <v-layout justify-space-between>
@@ -100,16 +99,25 @@
   </v-dialog>
 </template>
 <script>
+import axios from 'axios'
   export default {
+    components: {
+    },
     data:()=>( {
         dialog: false,
         buy: false,
         cancelar:false,
-    }),
+        viagem:{}
+    }),props:{
+            id:Number
+    },beforeMount(){
+      // eslint-disable-next-line
+       axios.get("http://batevolta-api.herokuapp.com/viagem/"+this.id).then((response)=>{this.viagem = response.data}).catch((e)=>{console.log(e)});
+    },
     methods:{
       comprar(){
         this.$router.push("/compras");
-      }
+      },
     }
   }
-</script>.
+</script>
