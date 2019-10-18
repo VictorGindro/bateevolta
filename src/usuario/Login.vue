@@ -69,17 +69,30 @@ export default {
                     "email": this.email,
                     "password": this.password
                 }).then((response) => {
-                    this.$store.dispatch('login',response).then(() => {
+                    this.$store.dispatch('login', response.data.token).then(() => {
                         // eslint-disable-next-line no-console
-                        console.log(response)
                         this.$router.push("/listar");
+                        axios.get("http://batevolta-api.herokuapp.com/token/getUser", {
+                            "headers": {
+                                Authorization: 'Bearer ' + this.$store.getters.user.token
+                            }
+                        }).then((response) => {
+                            response.data.token = this.$store.getters.user.token
+                            this.$store.dispatch('saveUser', response.data).then(() => {
+                                // eslint-disable-next-line no-console
+                                console.log(this.$store.getters.user);
+                            })
+                        }).catch((error) => {
+                            // eslint-disable-next-line no-console
+                            console.log(error);
+                        });
                     }, error => {
                         // eslint-disable-next-line no-console
                         console.log(error);
                     });
                 }).catch(
                     () => {
-                        this.snackbar=true;
+                        this.snackbar = true;
                     });
             }
         },

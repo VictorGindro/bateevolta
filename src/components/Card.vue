@@ -39,13 +39,9 @@ import Popup from './Popup'
   },
     data () {
       return {
-        slides: [
-          'First',
-        ],
-        colors:[
-            '#72DFD0',
-        ]
       }
+    },props:{
+        viagem: Object,
     },
   }
 </script>

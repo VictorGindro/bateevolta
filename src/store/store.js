@@ -10,14 +10,17 @@ export const store = new Vuex.Store({
         isAuth:false
     },
     mutations:{
-        login(state,user){
-            state.user=user;
+        login(state,token){
+            state.user.token=token;
             state.isAuth=true;
         },
         logout(state){
             state.user={};
             state.isAuth=false;
         },
+        updateUser(state,user){
+            state.user=user;
+        }
     },
     getters:{
         user: state => state.user,
@@ -25,11 +28,14 @@ export const store = new Vuex.Store({
         isAuth: state => state.isAuth
     },
     actions:{
-        login (state,user) {
-            state.commit('login',user);
+        login (state,token) {
+            state.commit('login',token);
           },
         logout (state) {
             state.commit('logout');
+          },
+          saveUser(state,user){
+            state.commit('updateUser',user);
           }
     }
 

@@ -1,13 +1,13 @@
 <template>
-  <v-container>
+  <v-container >
     <div class="text-center ">
       <v-img :src="require('../assets/BeV/BeVTranparentSmall.png')" contain height="200"></v-img>
       <h2 class="headline font-weight-bold mb-3">Viagens Disponiveis:</h2>
     </div>
-    <v-layout text-center wrap class="mb-5 ml-5 pb-5">
-      <v-col class="ml-5" v-for="card in cards" :key="card">
-        <Card class="ma-1" />
-      </v-col>
+    <v-layout>
+      <v-layout text-center justify-space-around wrap class="mb-5 ml-5 pb-5" v-for="n in cards.length" :key="n">
+        <Card class="ma-1" :viagem="cards[n]"/>
+      </v-layout>
     </v-layout>
   </v-container>
 </template>
