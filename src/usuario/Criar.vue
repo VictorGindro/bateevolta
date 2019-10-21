@@ -72,7 +72,14 @@ export default {
         ],
         cpfRules: [(v) => !!v || "Digite seu Cpf", (v) => /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(v) || 'O cpf precisa ser valido'],
         checkbox: false,
-    }),
+    }),mounted(){
+    let self = this
+    window.addEventListener('keyup', function (event) {
+      if (event.keyCode === 13) {
+          self.submit();
+      }
+    })
+  },
     methods: {
         submit() {
             if (this.$refs.form.validate()) {

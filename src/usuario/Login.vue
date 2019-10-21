@@ -59,8 +59,13 @@ export default {
         ],
         snackbar:false
 
-    }),beforeMount(){
-    
+    }),mounted(){
+    let self = this
+    window.addEventListener('keyup', function (event) {
+      if (event.keyCode === 13) {
+          self.submit();
+      }
+    })
   },methods:{
         submit() {
             if (this.$refs.form.validate()) {

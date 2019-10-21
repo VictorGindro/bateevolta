@@ -8,8 +8,8 @@
     <v-card>
       <v-card-title class="white--text teal text-center">{{viagem.nome}}</v-card-title>
       <v-card-title>
-        <v-img height="200" width="400" src="https://wallpaperbro.com/img/212940.jpg">
-        <v-card-subtitle class="white--text teal text-center">Oranizado por: {{viagem.nomeOrganizador}}</v-card-subtitle></v-img>
+        <v-img height="200" width="400" :src="viagem.fotoDestaque">
+        <v-list-item-subtitle class="white--text teal text-center">Oranizado por: {{viagem.nomeOrganizador}}</v-list-item-subtitle></v-img>
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -32,16 +32,16 @@
             </v-col>
             <v-col cols="6">
               <v-list-item-title>Ponto de saída:</v-list-item-title>
-              <v-list-item-subtitle class="mb-5">{{viagem.pontosEmbarques[0]}}</v-list-item-subtitle>
+              <v-list-item-subtitle class="mb-5">{{pontosEmbarques[0]}}</v-list-item-subtitle>
               <v-list-item-title>Ponto de chegada:</v-list-item-title>
-              <v-list-item-subtitle>{{viagem.pontosEmbarques[1]}}</v-list-item-subtitle>
+              <v-list-item-subtitle>{{pontosEmbarques[1]}}</v-list-item-subtitle>
             </v-col>
             <v-col cols="6">
               <v-layout justify-space-between>
                 <v-dialog v-model="buy" v-if=" this.$router.history.current.path !='/compras'" max-width="200px">
-                  <template v-slot:activator="{ on }" >
+                  <template v-if="this.$store.getters.user.role.authority != 'ROLE_ORGANIZADOR'" v-slot:activator="{ on }" >
                     <v-btn class="mx-2" v-on="on" fab small color="white" >
-                      <v-icon color="rgb(70, 180, 199)">shopping_cart</v-icon>
+                      <v-icon  color="rgb(70, 180, 199)">shopping_cart</v-icon>
                     </v-btn>
                   </template>
                   <v-card>
@@ -56,34 +56,6 @@
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
-                <div v-if="this.$router.history.current.path =='/compras'">
-                  
-
-                  <v-dialog v-model="cancelar" max-width="200px">
-                  <template v-slot:activator="{ on }" >
-                    <v-btn class="mx-2" v-on="on" color="white" >
-                      <!-- <v-icon color="rgb(70, 180, 199)">cancel_presentation</v-icon> -->
-                      Cancelar Viagem
-                    </v-btn>
-                  </template>
-                  <v-card>
-                    <v-card-title>
-                      <span class="headline text-center">Deseja Cancelar?</span>
-                    </v-card-title>
-                    <v-card-actions>
-                      <v-layout justify-center class="my-2">
-                      <v-btn @click="cancelar=!cancelar">Sim</v-btn>
-                      <v-btn @click="cancelar=!cancelar">Não</v-btn>
-                      </v-layout>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-
-
-
-
-                </div>
-                
               </v-layout>
             </v-col>
             <v-col cols="12" sm="8">
@@ -107,16 +79,29 @@ import axios from 'axios'
         dialog: false,
         buy: false,
         cancelar:false,
-        viagem:{}
+        viagem:{},
+        pontosEmbarques:[]
     }),props:{
             id:Number
     },beforeMount(){
       // eslint-disable-next-line
-       axios.get("http://batevolta-api.herokuapp.com/viagem/"+this.id).then((response)=>{this.viagem = response.data}).catch((e)=>{console.log(e)});
+       axios.get("http://batevolta-api.herokuapp.com/viagem/"+this.id).then((response)=>{this.viagem = response.data; this.pontosEmbarques = response.data.pontosEmbarques}).catch((e)=>{console.log(e)});
     },
     methods:{
-      comprar(){
-        this.$router.push("/compras");
+      comprar() {
+        axios.post("http://batevolta-api.herokuapp.com/embarque/viagem/" + this.id + "/turista/" + this.$store.getters.user.id, {
+          "headers": {
+            Authorization: 'Bearer ' + this.$store.getters.user.token
+          }
+        }).then((response) => {
+          // eslint-disable-next-line
+          console.log(response.data);
+          this.$router.push("/turista/compras");
+        }).catch((e) => {
+          // eslint-disable-next-line
+          console.log(e);
+        });
+        this.$router.push("/turista/compras");
       },
     }
   }

@@ -7,61 +7,67 @@
                         <h4>Nova Viagem</h4>
                     </v-toolbar-title>
                 </v-toolbar>
-                <v-card >
-                    
+                <v-card>
+
                     <v-card-title>
                         <span class="headline">Informações sobre a Viagem</span>
-                        
+
                     </v-card-title>
                     <v-card-text>
                         <v-container>
                             <v-form>
-                                <v-text-field label="Titulo da viagem" v-model="nome"/>
-                            <v-row>
-                                <v-col cols="12"  sm="12">
-                                    <v-date-picker v-model="dates" no-title="" full-width color="teal" locale="pt" multiple ></v-date-picker>
+                                <v-text-field label="Titulo da viagem" v-model="nome" />
+                                <v-row>
                                     <v-col cols="12" sm="12">
-                                        <v-text-field v-model="dateRangeText" label="Data saida ~ Data Chegada" prepend-icon="event" readonly></v-text-field>
+                                        <v-date-picker v-model="dates" no-title="" full-width color="teal" locale="pt"
+                                            multiple></v-date-picker>
+                                        <v-col cols="12" sm="12">
+                                            <v-text-field v-model="dateRangeText" label="Data saida ~ Data Chegada"
+                                                prepend-icon="event" readonly></v-text-field>
+                                            <v-text-field label="Link de imagem para foto" v-model="fotoDestaque" />
+                                        </v-col>
                                     </v-col>
-                                </v-col>    
-                                <v-col cols="12">
-                                    
-                                </v-col>
-                                <v-col cols="12">
-                                    <v-textarea label="Descrição" auto-grow outlined placeholder="Adicione uma descrição" v-model="descricao"/>
-                                </v-col>
-                                <v-col cols="6">
-                                    <v-text-field label="Quantidade de vagas" v-model="qtdVagas"/>
-                                    <v-text-field label="Preço" v-model="preco"/>
-                                </v-col>
-                                <v-col cols="6">
-                                    <v-text-field label="Ponto de Embarque" v-model="pontosEmbarques"/>
-                                    <v-layout justify-space-between>
-                                        <v-dialog v-model="save" v-if=" this.$router.history.current.path !='/compras'"
-                                            max-width="200px">
-                                            <template v-slot:activator="{ on }">
-                                                <v-btn class="mx-2"  v-on="on"  large color="white">
-                                                    Salvar Viagem
-                                                </v-btn>
-                                            </template>
-                                            <v-card>
-                                                <v-card-title>
-                                                    <span class="headline text-center">Salvar Viagem?</span>
-                                                </v-card-title>
-                                                <v-card-actions>
-                                                    <v-layout justify-center class="my-2">
-                                                        <v-btn @click="salvar">Sim</v-btn>
-                                                        <v-btn @click="save=!save">Não</v-btn>
-                                                    </v-layout>
-                                                </v-card-actions>
-                                            </v-card>
-                                        </v-dialog>
-                                    </v-layout>
-                                </v-col>
-                                <v-col cols="12" sm="6">
+                                    <v-col cols="12">
 
-                                </v-col>
-                            </v-row>
+                                    </v-col>
+                                    <v-col cols="12">
+                                        <v-textarea label="Descrição" auto-grow outlined
+                                            placeholder="Adicione uma descrição" v-model="descricao" />
+                                    </v-col>
+                                    <v-col cols="6">
+                                        <v-text-field label="Quantidade de vagas" v-model="qtdVagas" />
+                                        <v-text-field label="Preço" v-model="preco" />
+                                    </v-col>
+                                    <v-col cols="6">
+                                        <v-text-field label="Ponto de Embarque" v-model="pontosEmbarques[0]" />
+                                        <v-text-field label="Ponto de Chegada" v-model="pontosEmbarques[1]" />
+
+                                    </v-col>
+                                    <v-col cols="12" sm="12">
+                                        <v-layout justify-center>
+                                            <v-dialog v-model="save"
+                                                v-if=" this.$router.history.current.path !='/compras'"
+                                                max-width="200px">
+                                                <template v-slot:activator="{ on }">
+                                                    <v-btn class="mx-2" v-on="on" large color="white">
+                                                        Salvar Viagem
+                                                    </v-btn>
+                                                </template>
+                                                <v-card>
+                                                    <v-card-title>
+                                                        <span class="headline text-center">Salvar Viagem?</span>
+                                                    </v-card-title>
+                                                    <v-card-actions>
+                                                        <v-layout justify-center class="my-2">
+                                                            <v-btn @click="salvar">Sim</v-btn>
+                                                            <v-btn @click="save=!save">Não</v-btn>
+                                                        </v-layout>
+                                                    </v-card-actions>
+                                                </v-card>
+                                            </v-dialog>
+                                        </v-layout>
+                                    </v-col>
+                                </v-row>
                             </v-form>
                         </v-container>
                     </v-card-text>
@@ -79,7 +85,7 @@ export default {
     fotoDestaque:"",
     idOrganizador:"",
     nome:"",
-    pontosEmbarques:'',
+    pontosEmbarques:[],
     preco:0,
     qtdVagas:0,
     dates:[]
@@ -99,11 +105,11 @@ export default {
               "dataChegada": this.dates[1],
               "dataSaida": this.dates[0],
               "descricao": this.descricao,
-              "fotoDestaque": this.descricao,
+              "fotoDestaque": this.fotoDestaque,
               "idOrganizador": this.$store.getters.user.id,
               "nome": this.nome,
               "pontosEmbarques": [
-                  this.pontosEmbarques
+                  this.pontosEmbarques[0],this.pontosEmbarques[1]
               ],
               "preco": this.preco,
               "qtdVagas": this.qtdVagas

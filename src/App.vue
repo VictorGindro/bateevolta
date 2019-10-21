@@ -10,11 +10,11 @@
       </v-img>
       <v-toolbar-title></v-toolbar-title>
       <div class="flex-grow-1"></div>
-
-
+      {{user.nome}}
       <v-speed-dial v-model="on" direction="bottom" :open-on-hover="hover" :transition="transition">
         <template v-slot:activator>
           <v-btn v-model="on" dark icon>
+              
             <v-icon v-if="on">mdi-close</v-icon>
             <v-icon v-else>person</v-icon>
           </v-btn>
@@ -53,7 +53,7 @@
             <v-list-item-title>Nova viagem</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-         <v-list-item v-if="this.$store.getters.user.role.authority != 'ROLE_ORGANIZADOR'">
+         <v-list-item v-if="this.$store.getters.user.role.authority == 'ROLE_ORGANIZADOR'"  @click="listViagens()">
           <v-list-item-action>
             <v-icon>library_books</v-icon>
           </v-list-item-action>
@@ -80,11 +80,14 @@ export default {
     drawer: false,
     fab: false,
     on: false,
-    hover: false,
+    hover: true,
     transition: 'slide-y-reverse-transition',
-  }),methods:{
+    user: {}
+  }),updated(){
+    this.user=this.$store.getters.user
+  },methods:{
       compras(){
-        this.$router.push("/compras");
+        this.$router.push("/turista/compras");
       },
       diponiveis(){
         this.$router.push("/listar");
@@ -104,7 +107,10 @@ export default {
         });
       },
       criarViagem(){
-      this.$router.push("/viagem")
+      this.$router.push("/viagem/criar")
+      },
+      listViagens(){
+      this.$router.push("/organizador/viagens")
       }
     },
     computed: {

@@ -9,7 +9,7 @@
              </div>
          </v-system-bar>
          <v-list two-line>
-             <v-img aspect-ratio="2.00" src="https://wallpaperbro.com/img/212940.jpg">
+             <v-img aspect-ratio="2.00" class="teal" :src="viagem.fotoDestaque">
                  <v-list-item>
                      <v-list-item-avatar>
                          <Popup :id="viagem.id" />

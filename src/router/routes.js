@@ -38,10 +38,26 @@ const CriarViagem = resolve => {
         resolve(require('../usuario/CrirarViagem.vue'));
     });
 };
+const organizadorViagens = resolve => {
+    require.ensure(['../usuario/organizadorViagem.vue'], () => {
+        resolve(require('../usuario/organizadorViagem.vue'));
+    });
+};
 export const routes = [{
         path: '/listar',
         components: {
             default: List,
+            'card': Card,
+            'popup': Popup
+        },
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: '/organizador/viagens',
+        components: {
+            default: organizadorViagens,
             'card': Card,
             'popup': Popup
         },
@@ -60,7 +76,7 @@ export const routes = [{
 
     },
     {
-        path: '/viagem',
+        path: '/viagem/criar',
         components: {
             default: CriarViagem,
         },
@@ -80,7 +96,7 @@ export const routes = [{
 
     },
     {
-        path: '/compras',
+        path: '/turista/compras',
         components: {
             default: Compras,
         },
