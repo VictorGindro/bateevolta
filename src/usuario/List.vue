@@ -26,7 +26,7 @@ export default {
     cards:[]
     
   }),beforeMount(){
-    axios.get("http://batevolta-api.herokuapp.com/viagem/retrieve").then((response)=>{
+    axios.get("https://batevolta-api.herokuapp.com/viagem/retrieve").then((response)=>{
       this.cards = response.data;
     }).catch();
   }

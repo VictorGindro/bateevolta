@@ -61,14 +61,14 @@ import axios from 'axios'
     },methods:{
         getViagem(id){
             // eslint-disable-next-line
-            axios.get("http://batevolta-api.herokuapp.com/viagem/"+id).then((response)=>{console.log(response.data)}).catch((e)=>{console.log(e)});
+            axios.get("https://batevolta-api.herokuapp.com/viagem/"+id).then((response)=>{console.log(response.data)}).catch((e)=>{console.log(e)});
         }
     }
   }
 </script>
 <style scoped>
 .background{
-    background-image: url("https://wallpaperbro.com/img/212940.jpg");
+    background-image: url("httpss://wallpaperbro.com/img/212940.jpg");
     color: rgb(70, 180, 199);
 }
 </style>

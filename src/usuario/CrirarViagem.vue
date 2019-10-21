@@ -101,7 +101,7 @@ export default {
       },
     },methods:{
       salvar(){
-          axios.post("http://batevolta-api.herokuapp.com/viagem/cadastrar", {
+          axios.post("https://batevolta-api.herokuapp.com/viagem/cadastrar", {
               "dataChegada": this.dates[1],
               "dataSaida": this.dates[0],
               "descricao": this.descricao,

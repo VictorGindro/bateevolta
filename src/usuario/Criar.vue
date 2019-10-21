@@ -93,7 +93,7 @@ export default {
                     };
                     // eslint-disable-next-line
                     console.log(user);
-                    axios.post("http://batevolta-api.herokuapp.com/organizador/cadastrar", user).then((response) => {
+                    axios.post("https://batevolta-api.herokuapp.com/organizador/cadastrar", user).then((response) => {
                     // eslint-disable-next-line
                     console.log(response);
                     this.$router.push("/listar");
@@ -109,7 +109,7 @@ export default {
                         "nome": this.nome,
                         "senha": this.password
                     };
-                    axios.post("http://batevolta-api.herokuapp.com/turista/cadastrar", user).then((response) => {
+                    axios.post("https://batevolta-api.herokuapp.com/turista/cadastrar", user).then((response) => {
                     // eslint-disable-next-line
                     console.log(response);
                     this.$router.push("/listar");

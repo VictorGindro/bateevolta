@@ -70,14 +70,14 @@ export default {
         submit() {
             if (this.$refs.form.validate()) {
 
-                axios.post("http://batevolta-api.herokuapp.com/auth", {
+                axios.post("https://batevolta-api.herokuapp.com/auth", {
                     "email": this.email,
                     "password": this.password
                 }).then((response) => {
                     this.$store.dispatch('login', response.data.token).then(() => {
                         // eslint-disable-next-line no-console
                         this.$router.push("/listar");
-                        axios.get("http://batevolta-api.herokuapp.com/token/getUser", {
+                        axios.get("https://batevolta-api.herokuapp.com/token/getUser", {
                             "headers": {
                                 Authorization: 'Bearer ' + this.$store.getters.user.token
                             }

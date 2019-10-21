@@ -26,7 +26,7 @@ export default {
     cards:[]
     
   }),beforeMount(){
-    axios.get("http://batevolta-api.herokuapp.com/organizador/+"+this.$store.getters.user.id+"/viagens",{
+    axios.get("https://batevolta-api.herokuapp.com/organizador/+"+this.$store.getters.user.id+"/viagens",{
                             "headers": {
                                 Authorization: 'Bearer ' + this.$store.getters.user.token
                             }

@@ -28,7 +28,7 @@ export default {
     }),beforeMount(){
       // eslint-disable-next-line
       console.log(this.$store.getters.user.token);
-     axios.get("http://batevolta-api.herokuapp.com/turista/"+this.$store.getters.user.id+"/ingressos",{
+     axios.get("https://batevolta-api.herokuapp.com/turista/"+this.$store.getters.user.id+"/ingressos",{
                             "headers": {
                                 Authorization: 'Bearer ' + this.$store.getters.user.token
                             }

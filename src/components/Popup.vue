@@ -85,11 +85,11 @@ import axios from 'axios'
             id:Number
     },beforeMount(){
       // eslint-disable-next-line
-       axios.get("http://batevolta-api.herokuapp.com/viagem/"+this.id).then((response)=>{this.viagem = response.data; this.pontosEmbarques = response.data.pontosEmbarques}).catch((e)=>{console.log(e)});
+       axios.get("https://batevolta-api.herokuapp.com/viagem/"+this.id).then((response)=>{this.viagem = response.data; this.pontosEmbarques = response.data.pontosEmbarques}).catch((e)=>{console.log(e)});
     },
     methods:{
       comprar() {
-        axios.post("http://batevolta-api.herokuapp.com/embarque/viagem/" + this.id + "/turista/" + this.$store.getters.user.id, {},{
+        axios.post("https://batevolta-api.herokuapp.com/embarque/viagem/" + this.id + "/turista/" + this.$store.getters.user.id, {},{
           "headers": {
             Authorization: 'Bearer ' + this.$store.getters.user.token
           }
