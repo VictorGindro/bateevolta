@@ -85,6 +85,9 @@ export default {
     user: {}
   }),updated(){
     this.user=this.$store.getters.user
+    if(this.$store.getters.user.role.authority=="none"){
+      this.drawer=false
+    }
   },methods:{
       compras(){
         this.$router.push("/turista/compras");
