@@ -1,5 +1,11 @@
 # bateevolta
 
+## Project Preview
+---
+To preview this webpage, run the Project setup and then install the **serve** node dependence.
+
+then use serve -s dist on the root directory
+
 ## Project setup
 ```
 npm install
