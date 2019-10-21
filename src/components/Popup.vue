@@ -89,7 +89,7 @@ import axios from 'axios'
     },
     methods:{
       comprar() {
-        axios.post("http://batevolta-api.herokuapp.com/embarque/viagem/" + this.id + "/turista/" + this.$store.getters.user.id, {
+        axios.post("http://batevolta-api.herokuapp.com/embarque/viagem/" + this.id + "/turista/" + this.$store.getters.user.id, {},{
           "headers": {
             Authorization: 'Bearer ' + this.$store.getters.user.token
           }

@@ -33,6 +33,8 @@ export default {
                                 Authorization: 'Bearer ' + this.$store.getters.user.token
                             }
       }).then((response)=>{
+        // eslint-disable-next-line
+        console.log(response.data);
       this.cards = response.data;
     }).catch();
   }
